@@ -1,0 +1,32 @@
+name: checkin
+
+on:
+  schedule:
+    - cron: '00 04 * * *'
+    # 每天中午12点签到
+
+  workflow_dispatch: # click the button on Github repo!
+
+env:
+  LOGIN_URL: 'https://keylol.com'
+  LOGIN_USERNAME: ${{ secrets.LOGIN_USERNAME }}
+  LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+  SEND_MAIL: ${{ secrets.SEND_MAIL }}
+  RECEIVE_MAIL: ${{ secrets.RECEIVE_MAIL }}
+  TOKEN: ${{ secrets.TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.9
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'pnpm'
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm start
