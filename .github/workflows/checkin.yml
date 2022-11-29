@@ -11,6 +11,7 @@ env:
   LOGIN_URL: 'https://keylol.com'
   LOGIN_USERNAME: ${{ secrets.LOGIN_USERNAME }}
   LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+  UID: ${{ secrets.UID }}
   SEND_MAIL: ${{ secrets.SEND_MAIL }}
   RECEIVE_MAIL: ${{ secrets.RECEIVE_MAIL }}
   TOKEN: ${{ secrets.TOKEN }}
@@ -20,13 +21,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - name: Check code
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 6.32.9
-      - uses: actions/setup-node@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'pnpm'
-      - run: pnpm install --no-frozen-lockfile
-      - run: pnpm start
+
+      - name: Install deps
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Start project
+        run: pnpm start

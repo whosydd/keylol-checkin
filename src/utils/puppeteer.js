@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer')
-const mail = require('./mail')
 require('dotenv').config()
 
 const login = async url => {
@@ -17,7 +16,7 @@ const login = async url => {
 
     // 登录页面加载
     await page.click('.btn-user-action')
-    await page.waitForSelector('#cv_login_imgdiv', { visible: true })
+    await page.waitForSelector('[placeholder="用户名/手机号/EMail"]')
 
     // login
     const username = process.env.LOGIN_USERNAME
@@ -26,28 +25,21 @@ const login = async url => {
     await page.type('[placeholder="密码"]', password)
     await page.click('.login_button')
 
-    // 等待加载首页
-    await page.waitForSelector('.avatar')
-    // 点击头像进入统计信息页面
-    await page.click('.avatar')
-
-    // 处理cookie
+    await page.waitForSelector('#nav-logo')
     const cookies = await page.cookies()
     const cookie = cookies.reduce((pre, cur) => {
       pre += cur.name + '=' + cur.value + ';'
       return pre
     }, '')
 
-    // 获取统计信息页面的url
-    const info_url = page.url()
-
-    return new Promise(async (resolve, reject) => {
-      resolve({ info_url, cookie })
+    return new Promise((resolve, reject) => {
+      resolve({ cookie, err: null })
     })
-  } catch (error) {
-    // 出现错误时，发送邮件
-    mail(error)
-    await browser.close()
+  } catch (err) {
+    console.log('pptr_err:', err)
+    return new Promise((resolve, reject) => {
+      resolve({ cookie: null, err })
+    })
   } finally {
     if (browser != null) {
       await browser.close()
