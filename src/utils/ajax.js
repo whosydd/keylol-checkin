@@ -19,6 +19,7 @@ const getInfo = (info_url, cookie) => {
         resolve({ points, hp, steam })
       })
       .catch(err => {
+        console.log('ajax_err:', err)
         // 出现错误时，发送邮件
         mail(err)
       })
