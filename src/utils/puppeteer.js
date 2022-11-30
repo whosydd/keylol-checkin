@@ -8,6 +8,7 @@ const login = async url => {
       width: 1500,
       height: 800,
     },
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   })
   try {
     const [page] = await browser.pages()
@@ -25,6 +26,7 @@ const login = async url => {
     await page.type('[placeholder="密码"]', password)
     await page.click('.login_button')
 
+    // 等待加载首页并获取 cookie
     await page.waitForSelector('#nav-logo')
     const cookies = await page.cookies()
     const cookie = cookies.reduce((pre, cur) => {
