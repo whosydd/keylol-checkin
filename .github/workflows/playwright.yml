@@ -1,0 +1,42 @@
+name: Playwright Tests
+on:
+  schedule:
+    - cron: "00 04 * * *"
+    # 每天中午12点签到
+
+  workflow_dispatch: # click the button on Github repo!
+
+env:
+  LOGIN_URL: "https://keylol.com"
+  LOGIN_USERNAME: ${{ secrets.LOGIN_USERNAME }}
+  LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+  UID: ${{ secrets.UID }}
+  SEND_MAIL: ${{ secrets.SEND_MAIL }}
+  RECEIVE_MAIL: ${{ secrets.RECEIVE_MAIL }}
+  TOKEN: ${{ secrets.TOKEN }}
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.9
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: pnpm dlx playwright test
+      # - uses: actions/upload-artifact@v2
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 30

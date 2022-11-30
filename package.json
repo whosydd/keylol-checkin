@@ -1,0 +1,16 @@
+{
+  "name": "keylol-checkin",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "GY <dev.youngkwok718@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.28.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
