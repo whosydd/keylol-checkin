@@ -13,7 +13,6 @@
 - `SEND_MAIL` ：发送邮件的邮箱，默认使用 QQ 邮箱
 - `RECEIVE_MAIL` ：接收邮件的邮箱
 - `TOKEN` ：这是 smtp 授权码
-- `COOKIE` ：手动登录网站后获取
 
 ## 使用
 
