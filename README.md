@@ -1,8 +1,6 @@
 # keylol-checkin
 
-## 已知问题
-
-- 本地可以正常运行，但是使用 github actions 却会报 `TimeoutError: Waiting for selector '#nav-logo' failed: Waiting failed: 30000ms exceeded` 的错误，所以此项目暂时搁置
+> 如果多次签到失败，可以切换到 `cookie-checkin` 分支
 
 ## 配置项
 
