@@ -1,25 +1,16 @@
 {
   "name": "keylol-checkin",
-  "version": "1.0.0",
-  "description": "其乐论坛签到",
+  "version": "0.1.0",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "node ./index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/whosydd/keylol-checkin.git"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "GY <dev.youngkwok718@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "prettier": "^2.8.0"
+    "@playwright/test": "^1.28.1"
   },
   "dependencies": {
-    "axios": "1.1.3",
-    "dotenv": "^16.0.3",
-    "nodemailer": "^6.8.0",
-    "puppeteer": "^19.3.0"
+    "dotenv": "^16.0.3"
   }
 }
