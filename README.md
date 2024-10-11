@@ -1,6 +1,6 @@
 # keylol-checkin
 
-> 说明：由于运行 actions 时，playwright 安装失败导致无法运行该脚本，且暂时无暇顾及，故先归档，以后有时间再说
+> 说明：由于运行 actions 时，playwright 安装失败导致无法运行该脚本，且暂时无暇顾及，故先归档
 
 ## 配置项
 
